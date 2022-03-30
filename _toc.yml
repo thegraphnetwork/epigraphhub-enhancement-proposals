@@ -1,0 +1,10 @@
+format: jb-book
+root: README
+options:
+  numbered: true
+
+parts:
+
+  - caption: EpiGraphHub Enhancement Proposal
+    chapters:
+      - file: eeps/eep-2022001-multi-api
