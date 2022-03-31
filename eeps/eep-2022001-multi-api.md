@@ -56,12 +56,49 @@ inside a container (recommended) or on a python environment.
 **Key points:**
 
 * Architecture
-* Implementation
+  * Workflow
+  * Core Libraries
 
 ### Architecture
 
-Some example about this architecture can be checked out in
+This EEP proposes a new architecture where there is a separation among:
+
+- **user API** (e.g.: `epigraphhub-api` or just `epigraphhub`)
+- **backend API** (e.g.: `epigraphhub-backend`)
+- **core library** (e.g.: `epigraphhub-core`)
+
+An example about this architecture can be checked out at
 [this Proof of Concept](https://github.com/osl-incubator/poc-multi-api).
+
+#### Workflow
+
+The common usage workflow recommended would be:
+
+- User executes a docker/docker-compose that will serve **backend API**
+and **core libraries**. Or, the user can use an existent instance for
+the **backend API**.
+- Locally, the user installs the **user API** according to the
+programming language the user is using (**Python** or **R**).
+- The user run a entrypoint command that will create a config file
+(e.g. ~/.config/epigraphhub/config.yaml). The command will aspect
+some inputs from the user:
+  - **API host**
+  - **API port**
+  - **API token**, if authentication is necessary).
+- after this configuration, the **user API** should be properly working
+on the user environment.
+
+#### Core Libraries
+
+The **core library** is where all the core algorithms will live.
+It can support **core libraries** for any language. Initially,
+it will support **core libraries** for **Python** and **R**.
+
+These core libraries will be served to the final user via the **backend API**
+and **user API**.
+
+
+
 
 #### Key point 1.1
 
